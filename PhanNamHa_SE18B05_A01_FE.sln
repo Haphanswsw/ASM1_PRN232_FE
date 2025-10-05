@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.14.36414.22 d17.14
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FUNewsClientWpf", "FUNewsClientWpf\FUNewsClientWpf.csproj", "{478D838D-AA96-4AF2-A6F7-562A596E4CEB}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{478D838D-AA96-4AF2-A6F7-562A596E4CEB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{478D838D-AA96-4AF2-A6F7-562A596E4CEB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{478D838D-AA96-4AF2-A6F7-562A596E4CEB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{478D838D-AA96-4AF2-A6F7-562A596E4CEB}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {9CD35949-BD96-4C04-A547-B4C57A81B48F}
+	EndGlobalSection
+EndGlobal
