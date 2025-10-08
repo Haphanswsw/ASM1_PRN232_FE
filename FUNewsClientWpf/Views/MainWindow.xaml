@@ -11,157 +11,126 @@
                 <MenuItem Header="Logout" Click="Logout_Click"/>
             </MenuItem>
         </Menu>
+        <ToolBar DockPanel.Dock="Top"
+                 Background="{StaticResource SurfaceBrush}"
+                 BorderBrush="{StaticResource BorderBrush}"
+                 BorderThickness="0,0,0,1">
+            <Button Content="Logout" Click="Logout_Click" Style="{StaticResource PrimaryButton}" />
+        </ToolBar>
         <TabControl x:Name="Tabs">
             <TabItem x:Name="AdminAccountsTab" Header="Accounts (Admin)" Visibility="Collapsed">
-                <Grid Margin="8">
+                <Grid Margin="12">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="Auto"/>
                         <RowDefinition Height="*"/>
                     </Grid.RowDefinitions>
-                    <StackPanel Orientation="Horizontal" Margin="0,0,0,8">
-                        <!-- Search with placeholder -->
-                        <Grid Width="240" Margin="0,0,8,0">
-                            <TextBox x:Name="AccountSearchBox"/>
-                            <TextBlock Text="Search by name/email..."
-                                       Foreground="{DynamicResource {x:Static SystemColors.GrayTextBrushKey}}"
-                                       Margin="6,0,0,0"
-                                       VerticalAlignment="Center"
-                                       IsHitTestVisible="False">
-                                <TextBlock.Style>
-                                    <Style TargetType="TextBlock">
-                                        <Setter Property="Visibility" Value="Collapsed"/>
-                                        <Style.Triggers>
-                                            <DataTrigger Binding="{Binding Text, ElementName=AccountSearchBox}" Value="">
-                                                <Setter Property="Visibility" Value="Visible"/>
-                                            </DataTrigger>
-                                        </Style.Triggers>
-                                    </Style>
-                                </TextBlock.Style>
-                            </TextBlock>
-                        </Grid>
+
+                    <StackPanel Orientation="Horizontal" Margin="0,0,0,10">
+                        <TextBox x:Name="AccountSearchBox"
+                                 Width="260" Margin="0,0,8,0"
+                                 Style="{StaticResource WatermarkTextBox}"
+                                 Tag="Search by name/email"/>
                         <Button Content="Refresh" Margin="0,0,8,0" Click="AccountsRefresh_Click"/>
-                        <Button Content="Create..." Margin="0,0,8,0" Click="AccountCreate_Click"/>
-                        <Button Content="Edit..." Margin="0,0,8,0" Click="AccountEdit_Click"/>
+                        <!-- Hidden per request -->
+                        <Button Content="Create..." Margin="0,0,8,0" Click="AccountCreate_Click" Style="{StaticResource PrimaryButton}" Visibility="Collapsed"/>
+                        <Button Content="Edit..." Margin="0,0,8,0" Click="AccountEdit_Click" Visibility="Collapsed"/>
                         <Button Content="Delete" Click="AccountDelete_Click"/>
                     </StackPanel>
-                    <DataGrid x:Name="AccountsGrid" Grid.Row="1" AutoGenerateColumns="False" IsReadOnly="True"
-                    SelectionMode="Single">
+
+                    <DataGrid x:Name="AccountsGrid" Grid.Row="1"
+                              AutoGenerateColumns="False" IsReadOnly="True"
+                              SelectionMode="Single">
                         <DataGrid.Columns>
                             <DataGridTextColumn Header="ID" Binding="{Binding AccountId}" Width="60"/>
                             <DataGridTextColumn Header="Name" Binding="{Binding AccountName}" Width="*"/>
                             <DataGridTextColumn Header="Email" Binding="{Binding AccountEmail}" Width="*"/>
-                            <DataGridTextColumn Header="Role" Binding="{Binding AccountRole}" Width="80"/>
+                            <DataGridTextColumn Header="Role" Binding="{Binding AccountRole}" Width="100"/>
                         </DataGrid.Columns>
                     </DataGrid>
                 </Grid>
             </TabItem>
 
             <TabItem x:Name="CategoriesTab" Header="Categories (Staff/Admin)" Visibility="Collapsed">
-                <Grid Margin="8">
+                <Grid Margin="12">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="Auto"/>
                         <RowDefinition Height="*"/>
                     </Grid.RowDefinitions>
-                    <StackPanel Orientation="Horizontal" Margin="0,0,0,8">
-                        <!-- Search with placeholder -->
-                        <Grid Width="240" Margin="0,0,8,0">
-                            <TextBox x:Name="CategorySearchBox"/>
-                            <TextBlock Text="Search by name..."
-                                       Foreground="{DynamicResource {x:Static SystemColors.GrayTextBrushKey}}"
-                                       Margin="6,0,0,0"
-                                       VerticalAlignment="Center"
-                                       IsHitTestVisible="False">
-                                <TextBlock.Style>
-                                    <Style TargetType="TextBlock">
-                                        <Setter Property="Visibility" Value="Collapsed"/>
-                                        <Style.Triggers>
-                                            <DataTrigger Binding="{Binding Text, ElementName=CategorySearchBox}" Value="">
-                                                <Setter Property="Visibility" Value="Visible"/>
-                                            </DataTrigger>
-                                        </Style.Triggers>
-                                    </Style>
-                                </TextBlock.Style>
-                            </TextBlock>
-                        </Grid>
+
+                    <StackPanel Orientation="Horizontal" Margin="0,0,0,10">
+                        <TextBox x:Name="CategorySearchBox"
+                                 Width="240" Margin="0,0,8,0"
+                                 Style="{StaticResource WatermarkTextBox}"
+                                 Tag="Search by name"/>
                         <Button Content="Refresh" Margin="0,0,8,0" Click="CategoriesRefresh_Click"/>
-                        <Button Content="Create..." Margin="0,0,8,0" Click="CategoryCreate_Click"/>
+                        <Button Content="Create..." Margin="0,0,8,0" Click="CategoryCreate_Click" Style="{StaticResource PrimaryButton}"/>
                         <Button Content="Edit..." Margin="0,0,8,0" Click="CategoryEdit_Click"/>
                         <Button Content="Delete" Click="CategoryDelete_Click"/>
                     </StackPanel>
+
                     <DataGrid x:Name="CategoriesGrid" Grid.Row="1" AutoGenerateColumns="False" IsReadOnly="True">
                         <DataGrid.Columns>
-                            <DataGridTextColumn Header="ID" Binding="{Binding CategoryId}" Width="80"/>
+                            <DataGridTextColumn Header="ID" Binding="{Binding CategoryId}" Width="90"/>
                             <DataGridTextColumn Header="Name" Binding="{Binding CategoryName}" Width="*"/>
-                            <DataGridTextColumn Header="Active" Binding="{Binding IsActive}" Width="80"/>
-                            <DataGridTextColumn Header="ParentID" Binding="{Binding ParentCategoryId}" Width="90"/>
+                            <DataGridTextColumn Header="Active" Binding="{Binding IsActive}" Width="90"/>
+                            <DataGridTextColumn Header="Parent ID" Binding="{Binding ParentCategoryId}" Width="110"/>
                         </DataGrid.Columns>
                     </DataGrid>
                 </Grid>
             </TabItem>
 
             <TabItem x:Name="NewsTab" Header="News (Staff/Admin)" Visibility="Collapsed">
-                <Grid Margin="8">
+                <Grid Margin="12">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="Auto"/>
                         <RowDefinition Height="*"/>
                     </Grid.RowDefinitions>
-                    <StackPanel Orientation="Horizontal" Margin="0,0,0,8">
-                        <!-- Search with placeholder -->
-                        <Grid Width="240" Margin="0,0,8,0">
-                            <TextBox x:Name="NewsSearchBox"/>
-                            <TextBlock Text="Search by title/headline..."
-                                       Foreground="{DynamicResource {x:Static SystemColors.GrayTextBrushKey}}"
-                                       Margin="6,0,0,0"
-                                       VerticalAlignment="Center"
-                                       IsHitTestVisible="False">
-                                <TextBlock.Style>
-                                    <Style TargetType="TextBlock">
-                                        <Setter Property="Visibility" Value="Collapsed"/>
-                                        <Style.Triggers>
-                                            <DataTrigger Binding="{Binding Text, ElementName=NewsSearchBox}" Value="">
-                                                <Setter Property="Visibility" Value="Visible"/>
-                                            </DataTrigger>
-                                        </Style.Triggers>
-                                    </Style>
-                                </TextBlock.Style>
-                            </TextBlock>
-                        </Grid>
+
+                    <StackPanel Orientation="Horizontal" Margin="0,0,0,10">
+                        <TextBox x:Name="NewsSearchBox"
+                                 Width="260" Margin="0,0,8,0"
+                                 Style="{StaticResource WatermarkTextBox}"
+                                 Tag="Search by title/headline"/>
                         <Button Content="Refresh" Margin="0,0,8,0" Click="NewsRefresh_Click"/>
-                        <Button Content="Create..." Margin="0,0,8,0" Click="NewsCreate_Click"/>
+                        <Button Content="Create..." Margin="0,0,8,0" Click="NewsCreate_Click" Style="{StaticResource PrimaryButton}"/>
                         <Button Content="Edit..." Margin="0,0,8,0" Click="NewsEdit_Click"/>
+                        <Button Content="View..." Margin="0,0,8,0" Click="NewsView_Click"/>
                         <Button Content="Delete" Click="NewsDelete_Click"/>
                     </StackPanel>
+
                     <DataGrid x:Name="NewsGrid" Grid.Row="1" AutoGenerateColumns="False" IsReadOnly="True">
                         <DataGrid.Columns>
                             <DataGridTextColumn Header="ID" Binding="{Binding NewsArticleId}" Width="160"/>
                             <DataGridTextColumn Header="Title" Binding="{Binding NewsTitle}" Width="2*"/>
                             <DataGridTextColumn Header="Headline" Binding="{Binding Headline}" Width="2*"/>
                             <DataGridTextColumn Header="Created" Binding="{Binding CreatedDate}" Width="150"/>
-                            <DataGridTextColumn Header="Status" Binding="{Binding NewsStatus}" Width="80"/>
+                            <DataGridTextColumn Header="Status" Binding="{Binding NewsStatus}" Width="100"/>
                         </DataGrid.Columns>
                     </DataGrid>
                 </Grid>
             </TabItem>
 
             <TabItem x:Name="HistoryTab" Header="My History (Staff)" Visibility="Collapsed">
-                <Grid Margin="8">
-                    <Button Content="Refresh" HorizontalAlignment="Left" Click="HistoryRefresh_Click"/>
+                <Grid Margin="12">
+                    <Button Content="Refresh" HorizontalAlignment="Left" Click="HistoryRefresh_Click" Style="{StaticResource PrimaryButton}"/>
                     <DataGrid x:Name="HistoryGrid" Margin="0,40,0,0" AutoGenerateColumns="True" IsReadOnly="True"/>
                 </Grid>
             </TabItem>
 
             <TabItem x:Name="ReportTab" Header="Report (Admin)" Visibility="Collapsed">
-                <Grid Margin="8">
+                <Grid Margin="12">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="Auto"/>
                         <RowDefinition Height="*"/>
                     </Grid.RowDefinitions>
-                    <StackPanel Orientation="Horizontal" Margin="0,0,0,8">
+
+                    <StackPanel Orientation="Horizontal" Margin="0,0,0,10" VerticalAlignment="Center">
                         <DatePicker x:Name="StartDatePicker" SelectedDate="{x:Static sys:DateTime.Today}"/>
-                        <TextBlock Text="  to  " VerticalAlignment="Center"/>
+                        <TextBlock Text="  to  " VerticalAlignment="Center" Foreground="{StaticResource GrayTextBrush}"/>
                         <DatePicker x:Name="EndDatePicker" SelectedDate="{x:Static sys:DateTime.Today}"/>
-                        <Button Content="Run Report" Margin="8,0,0,0" Click="RunReport_Click"/>
+                        <Button Content="Run Report" Margin="8,0,0,0" Click="RunReport_Click" Style="{StaticResource PrimaryButton}"/>
                     </StackPanel>
+
                     <DataGrid x:Name="ReportGrid" Grid.Row="1" AutoGenerateColumns="True" IsReadOnly="True"/>
                 </Grid>
             </TabItem>

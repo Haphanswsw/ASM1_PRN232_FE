@@ -274,6 +274,26 @@ namespace FUNewsClientWpf.Views
             }
         }
 
+        // NEW: View details
+        private async void NewsView_Click(object sender, RoutedEventArgs e)
+        {
+            if (NewsGrid.SelectedItem is not NewsArticle item || string.IsNullOrEmpty(item.NewsArticleId)) return;
+
+            NewsArticle? full = null;
+            try
+            {
+                full = await _news.GetByIdAsync(item.NewsArticleId!);
+            }
+            catch
+            {
+                // fall back to selected item
+                full = item;
+            }
+
+            var win = new NewsDetailWindow(full!, _categoriesCache) { Owner = this };
+            win.ShowDialog();
+        }
+
         private async System.Threading.Tasks.Task CreateNews(CreateNewsArticleRequest req, List<int> tagIds)
         {
             var created = await _news.CreateAsync(req);

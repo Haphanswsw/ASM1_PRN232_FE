@@ -27,6 +27,9 @@ namespace FUNewsClientWpf.Services
             return await resp.Content.ReadFromJsonAsync<NewsArticle>();
         }
 
+        public Task<NewsArticle?> GetByIdAsync(string id)
+    => _client.Http.GetFromJsonAsync<NewsArticle>($"api/newsarticles/{id}");
+
         public async Task<bool> UpdateAsync(string id, UpdateNewsArticleRequest req)
         {
             var resp = await _client.Http.PutAsJsonAsync($"api/newsarticles/{id}", req);

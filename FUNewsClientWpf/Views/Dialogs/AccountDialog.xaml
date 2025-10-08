@@ -1,8 +1,8 @@
 ﻿<Window x:Class="FUNewsClientWpf.Views.Dialogs.AccountDialog"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="Account" Height="260" Width="400" WindowStartupLocation="CenterOwner" ResizeMode="NoResize">
-    <Grid Margin="12">
+        Title="Account" Height="280" Width="420" WindowStartupLocation="CenterOwner" ResizeMode="NoResize">
+    <Grid Margin="16">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
@@ -11,55 +11,21 @@
             <RowDefinition Height="*"/>
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
-        <TextBlock Text="ID (short)" />
-        <TextBox x:Name="IdBox" Grid.Row="1" />
 
-        <!-- Name with placeholder -->
-        <Grid Grid.Row="2" Margin="0,6,0,0">
-            <TextBox x:Name="NameBox" />
-            <TextBlock Text="Name"
-                       Foreground="{DynamicResource {x:Static SystemColors.GrayTextBrushKey}}"
-                       Margin="6,0,0,0"
-                       VerticalAlignment="Center"
-                       IsHitTestVisible="False">
-                <TextBlock.Style>
-                    <Style TargetType="TextBlock">
-                        <Setter Property="Visibility" Value="Collapsed" />
-                        <Style.Triggers>
-                            <DataTrigger Binding="{Binding Text, ElementName=NameBox}" Value="">
-                                <Setter Property="Visibility" Value="Visible" />
-                            </DataTrigger>
-                        </Style.Triggers>
-                    </Style>
-                </TextBlock.Style>
-            </TextBlock>
-        </Grid>
+        <TextBlock Text="ID (short)"/>
+        <TextBox x:Name="IdBox" Grid.Row="1" Margin="0,4,0,8"/>
 
-        <!-- Email with placeholder -->
-        <Grid Grid.Row="3" Margin="0,6,0,0">
-            <TextBox x:Name="EmailBox" />
-            <TextBlock Text="Email"
-                       Foreground="{DynamicResource {x:Static SystemColors.GrayTextBrushKey}}"
-                       Margin="6,0,0,0"
-                       VerticalAlignment="Center"
-                       IsHitTestVisible="False">
-                <TextBlock.Style>
-                    <Style TargetType="TextBlock">
-                        <Setter Property="Visibility" Value="Collapsed" />
-                        <Style.Triggers>
-                            <DataTrigger Binding="{Binding Text, ElementName=EmailBox}" Value="">
-                                <Setter Property="Visibility" Value="Visible" />
-                            </DataTrigger>
-                        </Style.Triggers>
-                    </Style>
-                </TextBlock.Style>
-            </TextBlock>
-        </Grid>
+        <TextBox x:Name="NameBox" Grid.Row="2" Style="{StaticResource WatermarkTextBox}" Tag="Name" Margin="0,0,0,8"/>
+        <TextBox x:Name="EmailBox" Grid.Row="3" Style="{StaticResource WatermarkTextBox}" Tag="Email" Margin="0,0,0,8"/>
 
-        <PasswordBox x:Name="PassBox" Grid.Row="4" Margin="0,6,0,0" />
-        <StackPanel Grid.Row="5" Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,10,0,0">
-            <Button Content="OK" Width="80" Margin="0,0,8,0" Click="Ok_Click"/>
-            <Button Content="Cancel" Width="80" Click="Cancel_Click"/>
+        <StackPanel Grid.Row="4">
+            <TextBlock Text="Password" Margin="0,0,0,4" Foreground="{StaticResource GrayTextBrush}"/>
+            <PasswordBox x:Name="PassBox"/>
+        </StackPanel>
+
+        <StackPanel Grid.Row="5" Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,12,0,0">
+            <Button Content="OK" Width="90" Margin="0,0,8,0" Click="Ok_Click" Style="{StaticResource PrimaryButton}"/>
+            <Button Content="Cancel" Width="90" Click="Cancel_Click"/>
         </StackPanel>
     </Grid>
 </Window>
