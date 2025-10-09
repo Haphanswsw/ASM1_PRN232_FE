@@ -173,7 +173,8 @@ namespace FUNewsClientWpf.Views
 
         private void AccountCreate_Click(object sender, RoutedEventArgs e)
         {
-            var dlg = new Dialogs.AccountDialog();
+            var nextId = (short)((_accountsCache.Count == 0 ? 0 : _accountsCache.Max(a => a.AccountId)) + 1);
+            var dlg = new Dialogs.AccountDialog(nextId);
             if (dlg.ShowDialog() == true && dlg.Value != null)
             {
                 _ = CreateAccount(dlg.Value);

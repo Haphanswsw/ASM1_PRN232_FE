@@ -32,7 +32,7 @@
                                  Tag="Search by name/email"/>
                         <Button Content="Refresh" Margin="0,0,8,0" Click="AccountsRefresh_Click"/>
                         <!-- Hidden per request -->
-                        <Button Content="Create..." Margin="0,0,8,0" Click="AccountCreate_Click" Style="{StaticResource PrimaryButton}" Visibility="Collapsed"/>
+                        <Button Content="Create..." Margin="0,0,8,0" Click="AccountCreate_Click" Style="{StaticResource PrimaryButton}"/>
                         <Button Content="Edit..." Margin="0,0,8,0" Click="AccountEdit_Click" Visibility="Collapsed"/>
                         <Button Content="Delete" Click="AccountDelete_Click"/>
                     </StackPanel>

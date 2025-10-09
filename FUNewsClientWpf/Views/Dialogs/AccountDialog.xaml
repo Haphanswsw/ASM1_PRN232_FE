@@ -1,29 +1,48 @@
 ﻿<Window x:Class="FUNewsClientWpf.Views.Dialogs.AccountDialog"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="Account" Height="280" Width="420" WindowStartupLocation="CenterOwner" ResizeMode="NoResize">
+        Title="Account" Height="360" Width="420" WindowStartupLocation="CenterOwner" ResizeMode="NoResize">
     <Grid Margin="16">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
+            <!-- ID label -->
             <RowDefinition Height="Auto"/>
+            <!-- ID box -->
             <RowDefinition Height="Auto"/>
+            <!-- Name -->
             <RowDefinition Height="Auto"/>
+            <!-- Email -->
+            <RowDefinition Height="Auto"/>
+            <!-- Role label -->
+            <RowDefinition Height="Auto"/>
+            <!-- Role box -->
+            <RowDefinition Height="Auto"/>
+            <!-- Password -->
             <RowDefinition Height="*"/>
+            <!-- spacer -->
             <RowDefinition Height="Auto"/>
+            <!-- buttons -->
         </Grid.RowDefinitions>
 
-        <TextBlock Text="ID (short)"/>
-        <TextBox x:Name="IdBox" Grid.Row="1" Margin="0,4,0,8"/>
+        <TextBlock x:Name="IdLabel" Text="ID" />
+        <TextBox x:Name="IdBox" Grid.Row="1" Margin="0,4,0,12" IsReadOnly="True"/>
 
         <TextBox x:Name="NameBox" Grid.Row="2" Style="{StaticResource WatermarkTextBox}" Tag="Name" Margin="0,0,0,8"/>
         <TextBox x:Name="EmailBox" Grid.Row="3" Style="{StaticResource WatermarkTextBox}" Tag="Email" Margin="0,0,0,8"/>
 
-        <StackPanel Grid.Row="4">
+        <TextBlock Grid.Row="4" Text="Role" Foreground="{StaticResource GrayTextBrush}" Margin="0,0,0,4"/>
+        <ComboBox x:Name="RoleBox" Grid.Row="5" Margin="0,0,0,12">
+            <!-- Adjust Tag values if your API expects different codes -->
+            <ComboBoxItem Content="Admin" Tag="1"/>
+            <ComboBoxItem Content="Staff" Tag="2"/>
+        </ComboBox>
+
+        <StackPanel Grid.Row="6">
             <TextBlock Text="Password" Margin="0,0,0,4" Foreground="{StaticResource GrayTextBrush}"/>
             <PasswordBox x:Name="PassBox"/>
         </StackPanel>
 
-        <StackPanel Grid.Row="5" Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,12,0,0">
+        <StackPanel Grid.Row="8" Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,12,0,0">
             <Button Content="OK" Width="90" Margin="0,0,8,0" Click="Ok_Click" Style="{StaticResource PrimaryButton}"/>
             <Button Content="Cancel" Width="90" Click="Cancel_Click"/>
         </StackPanel>
